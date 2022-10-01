@@ -1,24 +1,46 @@
-console.log('tedfadfa');
+
 // create score variable (globally)
+// start button
+var startBtn = document.querySelector("#start-button");
+// empty space after timer text
+var timerCountdownSpan = document.querySelector("#time-left");
+var questionSpan = document.querySelector("#question");
+
+//starting score
+var score = 0;
 //timer variable
-// 
-//var array of objects (add m):
-// 
-// [
-//     {
-//         celebrities: [1,2,3,4],
-//         image:'',
-//         correctCeleb: 1
-//     },    
-//      {
-//         celebrities: [1,2,3,4],
-//         image:'',
-//         correctCeleb: 1
-//     }
-// 
-// ]
+var timeLeft = 5;
+//set time interval variable to attach to timer later
+var timeInterval;
+
+var isPlaying = false;
 
 //add event listener to start button
+startBtn.addEventListener("click", function () {
+    if (isPlaying) {
+        console.log("not playing");
+        return;
+    }
+    isPlaying = true
+    console.log("game started!");
+    questionSpan.textContent = "How should I figure out how to cycle through questions?"
+    timerCountdownSpan.textContent = timeLeft;
+
+    timeInterval = setInterval(function () {
+        if (timeLeft > 0) {
+            timerCountdownSpan.textContent = timeLeft;
+            timeLeft--;
+            console.log(timerCountdownSpan);
+            
+        } else {
+            console.log("game over!");
+            isPlaying = false;
+            
+        }
+    }, 1000)
+        
+    
+})
     //when clicked call timer function
     //when clicked, call display function
 
