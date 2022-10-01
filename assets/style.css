@@ -29,9 +29,7 @@ h1, h2, .question, .answers, header{
    text-align: center;
    width: 100%;
 }
-ul {
-    list-style: none;
-}
+
 
 .timer{
    /* align-self: flex-right; */
@@ -43,4 +41,33 @@ ul {
 .image {
     width: 20%;
     height: auto;
+}
+
+#listContainer {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.answers {
+    display: flex;
+    flex-direction: column;
+    height: 50%
+    
+}
+
+.answers li {
+    background-color: aliceblue;
+    width: 50%;
+    height: 20%;
+    margin: 1%;
+    align-self: center;
+}
+
+.answers li button{
+    background-color:blueviolet;
+    width: 90%;
+    height: 90%;
+    border: 2px solid blue;
+
 }
