@@ -3,7 +3,7 @@ var startBtn = document.querySelector("#start-button");
 var timerCountdownSpan = document.querySelector("#time-left");
 var questionSpan = document.querySelector("#question");
 var ulForAnswers = document.querySelector("#listContainer");
-// var buttonAccess = ulForAnswers.getElementsByTagName("button");
+var scoreSpan = document.querySelector("#score-span");
 var optionButtonsWorkOne = document.querySelector("#button-one");
 var optionButtonsWorkTwo = document.querySelector("#button-two");
 var optionButtonsWorkThree = document.querySelector("#button-three");
@@ -17,7 +17,8 @@ var arrayOfButtons = [
 // console.log(arrayOfButtons);
 // Variables
 var score = 0;
-var timeLeft = 15;
+scoreSpan.textContent = score;
+var timeLeft = 45;
 var timeInterval;
 var arrayOfQuesObj = [
   {
@@ -46,18 +47,68 @@ var arrayOfQuesObj = [
     correctAnswer: "Washington DC",
   },
 ];
-
 var highScore = 0;
+let potentialAnswerDiv = document.querySelectorAll(".optionButtons");
+var index = 0;
+var k = 0;
 
 //First question from array of objects is displayed w/ answers
 //On start:
+
+//need to iterate over array of objects
+
+function nextQuestion() {
+  var questionElement = arrayOfQuesObj[index].question;
+  //   console.log(questionElement);
+  var answerElementOne = arrayOfQuesObj[index].possibleAnswers[0];
+  //   console.log(answerElementOne);
+  var answerElementTwo = arrayOfQuesObj[index].possibleAnswers[1];
+  //   console.log(answerElementTwo);
+  var answerElementThree = arrayOfQuesObj[index].possibleAnswers[2];
+  //   console.log(answerElementThree);
+  var answerElementFour = arrayOfQuesObj[index].possibleAnswers[3];
+  //   console.log(answerElementFour);
+
+  questionSpan.textContent = questionElement;
+
+  optionButtonsWorkOne.textContent = answerElementOne;
+  optionButtonsWorkTwo.textContent = answerElementTwo;
+  optionButtonsWorkThree.textContent = answerElementThree;
+  optionButtonsWorkFour.textContent = answerElementFour;
+
+}
+
+//start button event listener
+  //on click timer starts
+  //first question shows
+  //nextQuestion function
+
+//add evemt listener to div container eith question answers
+  //when a click event happens inside div, check what was clicked and see if it was the right answer
+  //if answer correct, add points
+  //if wrong subtract time from timer
+
+
+
+function checkAnswer(event) {
+  var userAnswerOne = event.target.textContent;
+  console.log(userAnswerOne);
+  var correctAnswer = arrayOfQuesObj[index].correctAnswer;
+  index++;
+  if (userAnswerOne === correctAnswer) {
+    // alert("correct");
+    score += 1;
+    nextQuestion();
+  } else {
+    // alert("WRONG");
+    timeLeft -= 3;
+    nextQuestion();
+  }  
+}
+
+ulForAnswers.addEventListener("click", checkAnswer);
+
 startBtn.addEventListener("click", function () {
-  //   if (isPlaying) {
-  //     // console.log("not playing");
-  //     return;
-  //   }
-  //   isPlaying = true;
-  //   // console.log("game started!");
   timerCountdownSpan.textContent = timeLeft;
   nextQuestion();
   //Timer starts counting down
@@ -71,64 +122,16 @@ startBtn.addEventListener("click", function () {
     }
   }, 1000);
 });
-//need to iterate over array of objects
 
-function nextQuestion() {
-  //while flag
-  var flag = true;
-  //for loop
-  while (flag) {
-    for (var i = 0; i < arrayOfQuesObj.length; i++) {
-      //var question = arrayofobjects[i].question
-      var currentQuestion = arrayOfQuesObj[i].question;
-      questionSpan.textContent = currentQuestion;
-      console.log(questionSpan);
-      var possibleAnswers = arrayOfQuesObj[i].possibleAnswers;
-      var correctAnswer = arrayOfQuesObj[i].correctAnswer;
-      console.log(correctAnswer);
-      //   arrayOfButtons[i].textContent = arrayOfQuesObj[i].possibleAnswers;
+//user selects an answer
+//if answer is correct (button selected = correctAnswer)
+//continue to next question
+//else subtract time from timer
+//continue to next question
+//when timer reaches 0
+//alert user score and highscores
+//add number of times button selected = correctAnswer(?)
+//alert high scores
 
-      for (var j = 0; j < possibleAnswers.length; j++) {
-        arrayOfButtons[j].textContent = possibleAnswers[j];
-        arrayOfButtons[j].addEventListener("click", function () {
-          flag = false;
-          if (arrayOfButtons[j] === correctAnswer) {
-            score += 1;
-            flag = true;
-          } else {
-            timeLeft = timeLeft - 3;
-            flag = true;
-          }
-        });
-      }
-
-      return;
-    }
-  }
-  //var possibleanswers = arrayofobjects[i].answers
-  //var correctAnswer = arrayofobjects[i].correctanswer
-
-  //questionspan = question
-  //possibleanswers = arrayOfButtons[i]
-  //flag = false
-  //possibleanswers.addeventlistener(click, fucntion() {
-  //if possibleansers ===correctanswer
-  //score = score + 1
-  //flag = true
-  //else
-  //timer - 5
-  //flag = true
-  //})
-
-  //user selects an answer
-  //if answer is correct (button selected = correctAnswer)
-  //continue to next question
-  //else subtract time from timer
-  //continue to next question
-  //when timer reaches 0
-  //alert user score and highscores
-  //add number of times button selected = correctAnswer(?)
-  //alert high scores
-}
-
+//above commented code was in nextQuestion Func
 //go into local storage - refer to activities

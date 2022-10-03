@@ -23,7 +23,7 @@ body {
     margin: 3% 0 3% 0;
 }
 
-h1, h2, .question, .answers, header{
+h1, h2, .question, .answers, header, .score{
    align-self: center;
    padding: 3%;
    text-align: center;
