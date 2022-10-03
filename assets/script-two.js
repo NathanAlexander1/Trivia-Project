@@ -84,10 +84,22 @@ function nextQuestion() {
       questionSpan.textContent = currentQuestion;
       console.log(questionSpan);
       var possibleAnswers = arrayOfQuesObj[i].possibleAnswers;
+      var correctAnswer = arrayOfQuesObj[i].correctAnswer;
+      console.log(correctAnswer);
       //   arrayOfButtons[i].textContent = arrayOfQuesObj[i].possibleAnswers;
 
       for (var j = 0; j < possibleAnswers.length; j++) {
         arrayOfButtons[j].textContent = possibleAnswers[j];
+        arrayOfButtons[j].addEventListener("click", function () {
+          flag = false;
+          if (arrayOfButtons[j] === correctAnswer) {
+            score += 1;
+            flag = true;
+          } else {
+            timeLeft = timeLeft - 3;
+            flag = true;
+          }
+        });
       }
 
       return;
