@@ -1,309 +1,173 @@
-// // // create score variable (globally)
-// // // start button
-// var startBtn = document.querySelector("#start-button");
-// // empty space after timer text
-// var timerCountdownSpan = document.querySelector("#time-left");
-// var questionSpan = document.querySelector("#question");
-
-// //starting score
-// var score = 0;
-// //timer variable
-// var timeLeft = 15;
-// //set time interval variable to attach to timer later
-// var timeInterval;
-// var isPlaying = false;
-// var questionIndex = 0;
-// var highScore = 0;
-// var arrayOfQuesObj = [
-//   {
-//     question: "1 How many continents are there?",
-//     possibleAnswers: ["Ten", "Seven", "Eight", "Nine"],
-//     correctAnswer: "Seven",
-//   },
-//   {
-//     question: "2 What color is the sky?",
-//     possibleAnswers: ["Green", "Orange", "Blue", "Pumpkin"],
-//     correctAnswer: "Blue",
-//   },
-//   {
-//     question: "3 How much wood could a woodchuck chuck?",
-//     possibleAnswers: [11, 15, 7, 9],
-//     correctAnswer: 11,
-//   },
-//   {
-//     question: "4 What is the best thing to drink from?",
-//     possibleAnswers: ["Plate", "Bowl", "Spoon", "Cup"],
-//     correctAnswer: "Cup",
-//   },
-//   {
-//     question: "5 What is the capitol of of the USA?",
-//     possibleAnswers: ["Olympia", "Mexico", "Washington DC", "Congo"],
-//     correctAnswer: "Washington DC",
-//   },
-// ];
-
-// //add event listener to start button
-// startBtn.addEventListener("click", function () {
-//   if (isPlaying) {
-//     // console.log("not playing");
-//     return;
-//   }
-//   isPlaying = true;
-//   // console.log("game started!");
-//   answerList();
-//   timerCountdownSpan.textContent = timeLeft;
-
-//   timeInterval = setInterval(function () {
-//     if (timeLeft > 0) {
-//       timerCountdownSpan.textContent = timeLeft;
-//       timeLeft--;
-//     } else if ((timeLeft = 0)) {
-//       console.log("ALL DONE");
-//       isPlaying = false;
-//     }
-//   }, 1000);
-// });
-
-// function answerList() {
-//   //user selection variable
-//   var userSelection;
-//   var ulForAnswers = document.querySelector("#listContainer");
-//   var buttonAccess = ulForAnswers.getElementsByTagName("button");
-//   console.log(buttonAccess);
-//   // for (var k = 0; k < buttonAccess.length; k++) {
-//   //     buttonAccess[k].addEventListener("click", function () {
-//   //         console.log(k);
-//   //     })
-//   //     console.log(buttonAccess[k]);
-
-//   // }
-//   // console.log(buttonAccess[1]);
-//   //   var optionButtonsWork = document.getElementsByClassName(".optionButtons");
-//   var optionButtonsWorkOne = document.querySelector("#button-one");
-//   var optionButtonsWorkTwo = document.querySelector("#button-two");
-//   var optionButtonsWorkThree = document.querySelector("#button-three");
-//   var optionButtonsWorkFour = document.querySelector("#button-four");
-//   //for each object in array
-
-//   // for (var questionIndex = 0; questionIndex < arrayOfQuesObj.length;) {
-//   var displayQuestion = function (i) {
-//     console.log(questionIndex);
-//     console.log(highScore);
-
-//     questionSpan.textContent = arrayOfQuesObj[i].question;
-//     // console.log(questionSpan.textContent);
-//     var correctAnswer = arrayOfQuesObj[i].correctAnswer;
-
-//     /////////////////////////////////////
-//     var checkAnswer = function (answer) {
-//       optionButtonsWorkOne.addEventListener("click", function () {
-//         console.log("testONE");
-//         if (buttonAccess[0].textContent === answer) {
-//           console.log("you clicked right!");
-//           questionIndex++;
-//           highScore++;
-//           displayQuestion(questionIndex);
-//         } else {
-//           console.log("WRONG");
-//           questionIndex++;
-//           displayQuestion(questionIndex);
-//         }
-//       });
-
-//       optionButtonsWorkTwo.addEventListener("click", function () {
-//         console.log("testTWO");
-//         if (buttonAccess[1].textContent === answer) {
-//           console.log("you clicked right!");
-//           questionIndex++;
-//           highScore++;
-//           displayQuestion(questionIndex);
-//         } else {
-//           console.log("WRONG");
-//           questionIndex++;
-//           displayQuestion(questionIndex);
-//         }
-//       });
-
-//       optionButtonsWorkThree.addEventListener("click", function () {
-//         console.log("testTHREE");
-//         if (buttonAccess[2].textContent === answer) {
-//           console.log("you clicked right!");
-//           questionIndex++;
-//           highScore++;
-//           displayQuestion(questionIndex);
-//         } else {
-//           console.log("WRONG");
-//           questionIndex++;
-//           displayQuestion(questionIndex);
-//         }
-//       });
-
-//       optionButtonsWorkFour.addEventListener("click", function () {
-//         console.log("testFOUR");
-//         if (buttonAccess[3].textContent === answer) {
-//           console.log("you clicked right!");
-//           questionIndex++;
-//           highScore++;
-//           displayQuestion(questionIndex);
-//         } else {
-//           console.log("WRONG");
-//           questionIndex++;
-//           displayQuestion(questionIndex);
-//         }
-//       });
-//     };
-//     //////////////////////////////
-
-//     // console.log(correctAnswer);
-//     // create variable to access possible answer array of each object
-//     var possAnsArr = arrayOfQuesObj[i].possibleAnswers;
-//     // console.log(possAnsArr);
-
-//     for (var j = 0; j < possAnsArr.length; j++) {
-//       buttonAccess[j].textContent = possAnsArr[j];
-//       // console.log(buttonAccess[j]);
-//     }
-
-//     checkAnswer(correctAnswer);
-//   };
-
-//   displayQuestion(questionIndex);
-
-//   // }
-// }
-
-// ====================================================
-// create score variable (globally)
-// start button
+//DOM elements
 var startBtn = document.querySelector("#start-button");
-// empty space after timer text
 var timerCountdownSpan = document.querySelector("#time-left");
 var questionSpan = document.querySelector("#question");
+var ulForAnswers = document.querySelector("#listContainer");
+var scoreSpan = document.querySelector("#score-span");
+var optionButtonsWorkOne = document.querySelector("#button-one");
+var optionButtonsWorkTwo = document.querySelector("#button-two");
+var optionButtonsWorkThree = document.querySelector("#button-three");
+var optionButtonsWorkFour = document.querySelector("#button-four");
+var arrayOfButtons = [
+  optionButtonsWorkOne,
+  optionButtonsWorkTwo,
+  optionButtonsWorkThree,
+  optionButtonsWorkFour,
+];
+// console.log(arrayOfButtons);
+// Variables
 var score = 0;
 
-//starting score
-var score = 0;
-//timer variable
-var timeLeft = 15;
-//set time interval variable to attach to timer later
+var timeLeft = 4;
 var timeInterval;
-var isPlaying = false;
 var arrayOfQuesObj = [
   {
-    question: "How many continents are there?",
-    possibleAnswers: ["Ten", "Seven", "Eight", "Nine"],
-    correctAnswer: "Seven",
+    question: "1 What is the name of somebody who studies insects?",
+    possibleAnswers: ["Insectologist", "Enterologist", "Entomologist", "Estimologist"],
+    correctAnswer: "Entomologist"
   },
   {
-    question: "What color is the sky?",
-    possibleAnswers: ["Green", "Orange", "Blue", "Pumpkin"],
-    correctAnswer: "Blue",
+    question: "2 How many known types of insects are there?",
+    possibleAnswers: ["20 million", "900,000", "14.6 billion", "2.4 million"],
+    correctAnswer: "900,000"
   },
   {
-    question: "How much wood could a woodchuck chuck?",
-    possibleAnswers: [11, 15, 7, 9],
-    correctAnswer: 11,
+    question: "3 How many individual people does the total biomass of ants equal?",
+    possibleAnswers: ["1 billion", "5 billion", "9 billion", "34 billion"],
+    correctAnswer: "34 billion"
   },
   {
-    question: "What is the best thing to drink from?",
-    possibleAnswers: ["Plate", "Bowl", "Spoon", "Cup"],
-    correctAnswer: "Cup",
+    question: "4 What was the first ever insect to be sent to space?",
+    possibleAnswers: ["Ant", "Fruit Fly", "Cicada", "Cockroach"],
+    correctAnswer: "Fruit Fly"
   },
   {
-    question: "What is the capitol of of the USA?",
-    possibleAnswers: ["Olympia", "Mexico", "Washington DC", "Congo"],
-    correctAnswer: "Washington DC",
+    question: "5 What is the average lifespan of a bumblebee?",
+    possibleAnswers: ["One month", "Two months", "Four months", "One year"],
+    correctAnswer: "One month"
   },
-];
-
-//add event listener to start button
-startBtn.addEventListener("click", function () {
-  if (isPlaying) {
-    // console.log("not playing");
-    return;
+  {
+    question: "6 Which of the follow IS an arachnid?",
+    possibleAnswers: ["Termites", "Ticks", "Beatles", "Centipedes"],
+    correctAnswer: "Ticks"
+  },
+  {
+    question: "7 What is the average lifespan of a bumblebee?",
+    possibleAnswers: ["One month", "Two months", "Four months", "One year"],
+    correctAnswer: "One month"
+  },
+  {
+    question: "8 How long do periodical cicadas live underground for?",
+    possibleAnswers: ["17 years", "Two Years", "10 years", "One monrh"],
+    correctAnswer: "17 years"
+  },
+  {
+    question: "9 How much honey does the average bee make in its lifetime?",
+    possibleAnswers: ["One tablespoon", "Half a tablespoon", "One-eighth a teaspoon", "One-twelvth of a teaspoon"],
+    correctAnswer: "One month"
+  },
+  {
+    question: "10 Which organ do insects NOT have?",
+    possibleAnswers: ["Lungs", "Heart", "Brain", "Stomach"],
+    correctAnswer: "Lungs"
   }
-  isPlaying = true;
-  // console.log("game started!");
-  answerList();
-  timerCountdownSpan.textContent = timeLeft;
+];
+var highScore = 0;
+let potentialAnswerDiv = document.querySelectorAll(".optionButtons");
+var index = 0;
+var k = 0;
 
+//First question from array of objects is displayed w/ answers
+//On start:
+
+//need to iterate over array of objects
+
+function nextQuestion() {
+  var questionElement = arrayOfQuesObj[index].question;
+  //   console.log(questionElement);
+  var answerElementOne = arrayOfQuesObj[index].possibleAnswers[0];
+  //   console.log(answerElementOne);
+  var answerElementTwo = arrayOfQuesObj[index].possibleAnswers[1];
+  //   console.log(answerElementTwo);
+  var answerElementThree = arrayOfQuesObj[index].possibleAnswers[2];
+  //   console.log(answerElementThree);
+  var answerElementFour = arrayOfQuesObj[index].possibleAnswers[3];
+  //   console.log(answerElementFour);
+
+  questionSpan.textContent = questionElement;
+
+  optionButtonsWorkOne.textContent = answerElementOne;
+  optionButtonsWorkTwo.textContent = answerElementTwo;
+  optionButtonsWorkThree.textContent = answerElementThree;
+  optionButtonsWorkFour.textContent = answerElementFour;
+
+}
+
+//start button event listener
+  //on click timer starts
+  //first question shows
+  //nextQuestion function
+
+//add evemt listener to div container eith question answers
+  //when a click event happens inside div, check what was clicked and see if it was the right answer
+  //if answer correct, add points
+  //if wrong subtract time from timer
+
+
+
+function checkAnswer(event) {
+  var userAnswerOne = event.target.textContent;
+  console.log(userAnswerOne);
+  var correctAnswer = arrayOfQuesObj[index].correctAnswer;
+  index++;
+  if (userAnswerOne === correctAnswer) {
+    // alert("correct");
+    score += 10;
+    scoreSpan.textContent = score;
+    console.log(score);
+    nextQuestion();
+  } else {
+    // alert("WRONG");
+    timeLeft -= 3;
+    nextQuestion();
+  }  
+}
+
+function storeUser (initials, scorePlace) {
+  var info = {initials: initials, initials: scorePlace};
+  localStorage.setItem(initials, scorePlace);
+}
+
+ulForAnswers.addEventListener("click", checkAnswer);
+
+startBtn.addEventListener("click", function () {
+  timerCountdownSpan.textContent = timeLeft;
+  nextQuestion();
+  //Timer starts counting down
   timeInterval = setInterval(function () {
     if (timeLeft > 0) {
       timerCountdownSpan.textContent = timeLeft;
       timeLeft--;
-    } else if ((timeLeft = 0)) {
-      console.log("ALL DONE");
-      isPlaying = false;
-    }
+    } else {
+      var initialsPrompt = prompt("Please enter your initials.");
+
+      storeUser (initialsPrompt, score)
+      clearInterval(timeInterval);
+      window.location.replace("./assets./highscore.html");
+    } 
   }, 1000);
+  
 });
 
-function answerList() {
-  //user selection variable
-  var userSelection;
-  var ulForAnswers = document.querySelector("#listContainer");
-  var buttonAccess = ulForAnswers.getElementsByTagName("button");
-  for (var k = 0; k < buttonAccess.length; k++) {
-    buttonAccess[k].addEventListener("click", function () {
-      console.log(k);
-    });
-  }
-  // console.log(buttonAccess[1]);
-  //   var optionButtonsWork = document.getElementsByClassName(".optionButtons");
-  var optionButtonsWorkOne = document.querySelector("#button-one");
-  var optionButtonsWorkTwo = document.querySelector("#button-two");
-  var optionButtonsWorkThree = document.querySelector("#button-three");
-  var optionButtonsWorkFour = document.querySelector("#button-four");
-  //for each object in array
+//user selects an answer
+//if answer is correct (button selected = correctAnswer)
+//continue to next question
+//else subtract time from timer
+//continue to next question
+//when timer reaches 0
+//alert user score and highscores
+//add number of times button selected = correctAnswer(?)
+//alert high scores
 
-  for (var i = 0; i < arrayOfQuesObj.length; i++) {
-    questionSpan.textContent = arrayOfQuesObj[i].question;
-    // console.log(questionSpan.textContent);
-    var correctAnswer = arrayOfQuesObj[i].correctAnswer;
-    // console.log(correctAnswer);
-    // create variable to access possible answer array of each object
-    var possAnsArr = arrayOfQuesObj[i].possibleAnswers;
-    // console.log(possAnsArr);
-
-    for (var j = 0; j < possAnsArr.length; j++) {
-      buttonAccess[j].textContent = possAnsArr[j];
-      // console.log(buttonAccess[j]);
-    }
-
-    function eventDesignations() {
-      optionButtonsWorkOne.addEventListener("click", function () {
-        console.log("testONE");
-        if (buttonAccess[0].textContent === correctAnswer) {
-          console.log("you clicked right!");
-        } else {
-          console.log("WRONG");
-        }
-      });
-
-      optionButtonsWorkTwo.addEventListener("click", function () {
-        console.log("testTWO");
-        if (buttonAccess[1].textContent === correctAnswer) {
-          console.log("you clicked right!");
-        } else {
-          console.log("WRONG");
-        }
-      });
-      optionButtonsWorkThree.addEventListener("click", function () {
-        console.log("testTHREE");
-        if (buttonAccess[2].textContent === correctAnswer) {
-          console.log("you clicked right!");
-        } else {
-          console.log("WRONG");
-        }
-      });
-      optionButtonsWorkFour.addEventListener("click", function () {
-        console.log("testFOUR");
-        if (buttonAccess[3].textContent === correctAnswer) {
-          console.log("you clicked right!");
-        } else {
-          console.log("WRONG");
-        }
-      });
-    }
-  }
-}
+//above commented code was in nextQuestion Func
+//go into local storage - refer to activities
