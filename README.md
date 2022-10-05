@@ -28,3 +28,4 @@ Screenshot:
 ![Screenshot-of-trivia-project](./assets/trivia-project-screenshot.png)
 
 Deployment Link:
+https://nathanalexander1.github.io/trivia-project/
