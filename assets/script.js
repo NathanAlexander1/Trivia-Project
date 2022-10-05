@@ -164,7 +164,7 @@ function grabLocal () {
 // }
 
 highscoreButton.addEventListener("click", function() {
-  window.location.replace("highscore.html")
+  window.location.href = 'highscore.html';
 })
 
 ulForAnswers.addEventListener("click", checkAnswer);
