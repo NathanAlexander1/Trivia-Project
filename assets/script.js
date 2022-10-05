@@ -137,21 +137,21 @@ function checkAnswer(event) {
 }
 
 function storeUser (initialsPlace, scorePlace) {
+  var savedScores = JSON.parse(localStorage.getItem("info"));
+  if (savedScores === null) {
+    savedScores = [];
+  }
   var infoOfUser = {
     initials: initialsPlace, 
-    score: JSON.stringify(scorePlace)
+    score: scorePlace
   };
-
-  localStorage.setItem("info", JSON.stringify(infoOfUser));
-
-  // console.log(infoOfUser);
-  grabLocal (infoOfUser);
+  savedScores.push(infoOfUser)
+  localStorage.setItem("info", JSON.stringify(savedScores));
+  alertScore(infoOfUser);
 }
 
-function grabLocal () {
-  var userScore = JSON.parse(localStorage.getItem("info"));
-  alert("Your initials: " + userScore.initials + "\n" + "Your score:  " + userScore.score);
-  
+function alertScore(infoOfUser) {
+  alert("Your initials: " + infoOfUser.initials + "\n" + "Your score:  " + infoOfUser.score);
 }
 
 // function localStorKeyCounter () {
@@ -160,7 +160,6 @@ function grabLocal () {
 //     keyCounter = localStorage.length
 //     keyCounter++;
 //   }
-
 // }
 
 highscoreButton.addEventListener("click", function() {

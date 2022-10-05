@@ -5,18 +5,17 @@ function createScoreList (scoreListItem) {
     highscoresOl.appendChild(highscoreEntry);
 }
 
-// function grabLocal () {
-    var arrayOfScores = [];
-    var displayHighScores = JSON.parse(localStorage.getItem("info"));
-    
-    arrayOfScores.push(displayHighScores);
+function grabLocal () {
+    var savedScores = JSON.parse(localStorage.getItem("info"));
 
-    for (var i = 0; i < arrayOfScores.length; i++) {
-        var currentScoreObj = arrayOfScores[i]
+    for (var i = 0; i < savedScores.length; i++) {
+        var currentScoreObj = savedScores[i]
         
         var currentScoreListItem = currentScoreObj.initials + ": " + currentScoreObj.score;
 
         createScoreList(currentScoreListItem);
 
     }
-   
+}
+
+grabLocal ();
