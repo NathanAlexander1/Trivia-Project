@@ -142,6 +142,8 @@ function storeUser (initialsPlace, scorePlace) {
     score: JSON.stringify(scorePlace)
   };
 
+  
+
   localStorage.setItem("info", JSON.stringify(infoOfUser));
 
   // console.log(infoOfUser);
