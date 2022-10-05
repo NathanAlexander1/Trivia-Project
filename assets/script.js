@@ -154,8 +154,17 @@ function grabLocal () {
   
 }
 
+// function localStorKeyCounter () {
+//   var keyCounter = 0;
+//   if (localStorage !== null) {
+//     keyCounter = localStorage.length
+//     keyCounter++;
+//   }
+
+// }
+
 highscoreButton.addEventListener("click", function() {
-  window.location.replace("./assets./highscore.html")
+  window.location.replace("highscore.html")
 })
 
 ulForAnswers.addEventListener("click", checkAnswer);
