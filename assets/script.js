@@ -45,7 +45,7 @@ var arrayOfQuesObj = [
   },
   {
     question: "5 What do you call a fear of insects?",
-    possibleAnswers: ["Arachnophio", "Entomophobia", "Ophidiophobia", "Kagkourophobia"],
+    possibleAnswers: ["Arachnophobia", "Entomophobia", "Ophidiophobia", "Kagkourophobia"],
     correctAnswer: "Entomophobia"
   },
   {
@@ -66,7 +66,7 @@ var arrayOfQuesObj = [
   {
     question: "9 How much honey does the average bee make in its lifetime?",
     possibleAnswers: ["One tablespoon", "Half a tablespoon", "One-eighth a teaspoon", "One-twelvth of a teaspoon"],
-    correctAnswer: "One month"
+    correctAnswer: "One-twelvth of a teaspoon"
   },
   {
     question: "10 Which organ do insects NOT have?",
@@ -118,18 +118,6 @@ function nextQuestion() {
 
 }
 
-//start button event listener
-  //on click timer starts
-  //first question shows
-  //nextQuestion function
-
-//add evemt listener to div container eith question answers
-  //when a click event happens inside div, check what was clicked and see if it was the right answer
-  //if answer correct, add points
-  //if wrong subtract time from timer
-
-
-
 function checkAnswer(event) {
   var userAnswerOne = event.target.textContent;
   // console.log(userAnswerOne);
@@ -162,7 +150,7 @@ function storeUser (initialsPlace, scorePlace) {
 
 function grabLocal () {
   var userScore = JSON.parse(localStorage.getItem("info"));
-  alert("Your score:  " + userScore.score + "\n" + "Your initials: " + userScore.initials);
+  alert("Your initials: " + userScore.initials + "\n" + "Your score:  " + userScore.score);
   
 }
 
