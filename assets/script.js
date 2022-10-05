@@ -8,6 +8,8 @@ var optionButtonsWorkOne = document.querySelector("#button-one");
 var optionButtonsWorkTwo = document.querySelector("#button-two");
 var optionButtonsWorkThree = document.querySelector("#button-three");
 var optionButtonsWorkFour = document.querySelector("#button-four");
+
+var highscoreButton = document.querySelector("#highscore-button");
 var arrayOfButtons = [
   optionButtonsWorkOne,
   optionButtonsWorkTwo,
@@ -18,7 +20,7 @@ var arrayOfButtons = [
 // Variables
 var score = 0;
 
-var timeLeft = 4;
+var timeLeft = 60;
 var timeInterval;
 var arrayOfQuesObj = [
   {
@@ -42,9 +44,9 @@ var arrayOfQuesObj = [
     correctAnswer: "Fruit Fly"
   },
   {
-    question: "5 What is the average lifespan of a bumblebee?",
-    possibleAnswers: ["One month", "Two months", "Four months", "One year"],
-    correctAnswer: "One month"
+    question: "5 What do you call a fear of insects?",
+    possibleAnswers: ["Arachnophio", "Entomophobia", "Ophidiophobia", "Kagkourophobia"],
+    correctAnswer: "Entomophobia"
   },
   {
     question: "6 Which of the follow IS an arachnid?",
@@ -101,6 +103,19 @@ function nextQuestion() {
   optionButtonsWorkThree.textContent = answerElementThree;
   optionButtonsWorkFour.textContent = answerElementFour;
 
+  // if (index > arrayOfQuesObj.length-1) {
+  //   var initialsPrompt = prompt("Please enter your initials.");
+  //   storeUser (initialsPrompt, score);
+    
+  //   clearInterval(timeInterval);
+
+  //   confirm ("See highscores?");
+    
+  //   if (confirm) {
+  //     window.location.replace("./assets./highscore.html");
+  //   }
+  // }
+
 }
 
 //start button event listener
@@ -117,28 +132,47 @@ function nextQuestion() {
 
 function checkAnswer(event) {
   var userAnswerOne = event.target.textContent;
-  console.log(userAnswerOne);
+  // console.log(userAnswerOne);
   var correctAnswer = arrayOfQuesObj[index].correctAnswer;
   index++;
   if (userAnswerOne === correctAnswer) {
     // alert("correct");
     score += 10;
     scoreSpan.textContent = score;
-    console.log(score);
+  
     nextQuestion();
   } else {
     // alert("WRONG");
-    timeLeft -= 3;
+    timeLeft -= 10;
     nextQuestion();
-  }  
+  } 
 }
 
-function storeUser (initials, scorePlace) {
-  var info = {initials: initials, initials: scorePlace};
-  localStorage.setItem(initials, scorePlace);
+function storeUser (initialsPlace, scorePlace) {
+  var infoOfUser = {
+    initials: initialsPlace, 
+    score: JSON.stringify(scorePlace)
+  };
+
+  localStorage.setItem("info", JSON.stringify(infoOfUser));
+
+  // console.log(infoOfUser);
+  grabLocal (infoOfUser);
 }
+
+function grabLocal () {
+  var userScore = JSON.parse(localStorage.getItem("info"));
+  alert("Your score:  " + userScore.score + "\n" + "Your initials: " + userScore.initials);
+  
+}
+
+highscoreButton.addEventListener("click", function() {
+  window.location.replace("./assets./highscore.html")
+})
 
 ulForAnswers.addEventListener("click", checkAnswer);
+
+
 
 startBtn.addEventListener("click", function () {
   timerCountdownSpan.textContent = timeLeft;
@@ -150,10 +184,9 @@ startBtn.addEventListener("click", function () {
       timeLeft--;
     } else {
       var initialsPrompt = prompt("Please enter your initials.");
-
-      storeUser (initialsPrompt, score)
+      storeUser (initialsPrompt, score);
+      
       clearInterval(timeInterval);
-      window.location.replace("./assets./highscore.html");
     } 
   }, 1000);
   

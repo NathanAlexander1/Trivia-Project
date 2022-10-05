@@ -1,21 +1,43 @@
-function displayList () {
+var highscoresOL = document.querySelector("#highscores");
+var highscoreEntry = document.createElement("li");
+highscoresOL.appendChild(highscoreEntry);
 
 
+
+
+// function grabLocal () {
+    var arrayOfScores = [];
+    var displayHighScores = JSON.parse(localStorage.getItem("info"));
+    
+    // console.log(displayHighScores);
+    var highscoreScore = displayHighScores.score;
+    var highscoreInitials = displayHighScores.initials;
+    var highScoreListItem = highscoreInitials + ": " + highscoreScore;
+    // console.log(highScoreListItem);
+
+
+function createScoreList () {
+    var highscoresOl = document.querySelector("#highscores");
+    var highscoreEntry = document.createElement("li");
+    highscoreEntry.textContent = highScoreListItem;
+    highscoresOl.appendChild(highscoreEntry);
+    console.log(highscoresOL)
 }
 
-//grab intial: score from local storage (getItem)
-function grabLocal (initials, scorePlace) {
-    var userScore = localStorage.getItem(initials, scorePlace);
-    console.log(userScore);
-}
-grabLocal();
 
-//creat a list itme and append to ol
-function createListAndAppend () {
+createScoreList ();
+// for () {
+// createScoreList ();
+// }
+    // for (var x = 0; x < arrayOfScores.length; i++){
+    
+    // // highscoresOL = document.createElement("li")
 
-}
+    // // document.appendChild("highscoresOL");
 
+    // // highscoresOL.textContent = "EXAMPLE"
+    // }
+    
+//   }
 
-//set list item text content to the intial: score pair
-
-//sort through each highscore and list from highest to lowest
+//   grabLocal();
